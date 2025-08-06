@@ -203,7 +203,7 @@ Answer these questions:<br>\
 <br>Question 13: Which machine has the highest variance in inbound packets? \
 <br>Question 14: Which machine has the highest variance in outbound packets? \
 <br>Question 15: Which machine has an anomaly probability in outbound packets above 80%? \
-<br>Question 16: Which machine has an anomaly probability in inbound packets above 80%? \ 
+<br>Question 16: Which machine has an anomaly probability in inbound packets above 80%? \
 <br>Keep your response short.'
                messagedetails = "Outbound packets - Host: " + identarr[0]
         if 'inboundpackets' in r['Identifier']:
@@ -232,7 +232,7 @@ Answer these questions:<br>\
 <br>Question 13: Which machine has the highest variance in inbound packets? \
 <br>Question 14: Which machine has the highest variance in outbound packets? \
 <br>Question 15: Which machine has an anomaly probability in outbound packets above 80%? \
-<br>Question 16: Which machine has an anomaly probability in inbound packets above 80%? \ 
+<br>Question 16: Which machine has an anomaly probability in inbound packets above 80%? \
 <br>Keep your response short.'
                 messagedetails = "Inbound packets - Host: " + identarr[0]
         if message != "" and inside == 1 :
