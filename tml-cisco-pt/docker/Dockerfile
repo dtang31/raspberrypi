@@ -107,7 +107,7 @@ ARG CACHEBUST=1
 
 ######################################### Viper Producer directory
 
-RUN git clone --depth 1 https://github.com/smaurice101/transactionalmachinelearning.git
+RUN git clone --depth 1 https://github.com/dtang31/transactionalmachinelearning.git
 
 RUN cp -R transactionalmachinelearning Viper-produce/transactionalmachinelearning
 
@@ -281,7 +281,7 @@ RUN chmod -R +x Hpde
 
 ##################################################CLONE RASPBERRY PI REPO #######################
 
-RUN git clone --depth 1 https://github.com/smaurice101/raspberrypi.git
+RUN git clone --depth 1 https://github.com/dtang31/raspberrypi.git
 
 RUN chmod -R +x raspberrypi
 
