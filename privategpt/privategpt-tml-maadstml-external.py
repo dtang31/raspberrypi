@@ -163,55 +163,59 @@ def consumetopicdata(maintopic,rollback):
       return result
 
 def gatherdataforprivategpt(result):
-   res=json.loads(result,strict='False')
-   rawdataoutbound = []
-   rawdatainbound = []
-   privategptmessage = []
-   thresholdoutbound=1000000
-   thresholdinbound=1000000
-   meanin = 0
-   meanout = 0
+    res = json.loads(result, strict='False')
+    rawdataoutbound = []
+    rawdatainbound = []
+    privategptmessage = []
+    thresholdoutbound = 1000000
+    thresholdinbound = 1000000
+    meanin = 0
+    meanout = 0
 
-   for r in res['StreamTopicDetails']['TopicReads']:
-        identarr=r['Identifier'].split("~")
+    for r in res['StreamTopicDetails']['TopicReads']:
+        identarr = r['Identifier'].split("~")
         message = ""
         messagedetails = ""
         inside = 0
+
         if 'outboundpackets' in r['Identifier']:
-             message = 'Here is a list of numbers separated by a comma, each number represents bytes it is not one number, they are separate numbers: <br> '
-             for d in r['RawData']:
-               message = message  + str(d) + ',<br>'
-             #message = message[:-1]
-             mm,rr = Average(r['RawData'],thresholdoutbound)
-             if rr > meanout:
-               inside = 1
-               meanout = rr
-               message = message  + ' <br> ' + mm + '<br>\
-Answer these questions:<br>\
-<br>Question 1: Which machines are HOSTS AT RISK? \
-<br>Question 2: Which HOSTS AT RISK cannot be pinged? \
-<br>Keep your response short.'
-               messagedetails = "Outbound packets - Host: " + identarr[0]
+            message = 'Here is a list of numbers separated by a comma, each number represents bytes it is not one number, they are separate numbers: <br> '
+            for d in r['RawData']:
+                message += str(d) + ',<br>'
+            mm, rr = Average(r['RawData'], thresholdoutbound)
+            if rr > meanout:
+                inside = 1
+                meanout = rr
+                message = (
+                    message + ' <br> ' + mm + '<br>'
+                    "Answer these questions:<br>"
+                    "<br>Question 1: Are any hosts problematic? "
+                    "<br>Question 2: Do you think any hosts cannot be pinged? "
+                    "<br>Keep your response short."
+                )
+                messagedetails = "Outbound packets - Host: " + identarr[0]
+
         if 'inboundpackets' in r['Identifier']:
-             message = 'Here is a list of numbers separated by a comma, each number represents bytes it is not one number, they are separate numbers: <br>'
-             for d in r['RawData']:
-               message = message  + str(d) + ',<br>'
-             #message = message[:-1]
-             mm,rr = Average(r['RawData'],thresholdinbound)
-             if rr > meanin:
+            message = 'Here is a list of numbers separated by a comma, each number represents bytes it is not one number, they are separate numbers: <br>'
+            for d in r['RawData']:
+                message += str(d) + ',<br>'
+            mm, rr = Average(r['RawData'], thresholdinbound)
+            if rr > meanin:
                 inside = 1
                 meanin = rr
-                message = message  + ' <br> ' + mm + '<br>\
-Answer these questions:<br>\
-<br>Question 1: Which machines are HOSTS AT RISK? \
-<br>Question 2: Which HOSTS AT RISK cannot be pinged? \
-
-<br>Keep your response short.'
+                message = (
+                    message + ' <br> ' + mm + '<br>'
+                    "Answer these questions:<br>"
+                    "<br>Question 1: Are any hosts problematic? "
+                    "<br>Question 2: Do you think any hosts cannot be pinged? "
+                    "<br>Keep your response short."
+                )
                 messagedetails = "Inbound packets - Host: " + identarr[0]
-        if message != "" and inside == 1 :
-          privategptmessage.append([message,messagedetails])
 
-   return privategptmessage
+        if message != "" and inside == 1:
+            privategptmessage.append([message, messagedetails])
+
+    return privategptmessage
      
 def producegpttokafka(value,maintopic):
      inputbuf=value     
