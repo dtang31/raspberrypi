@@ -188,22 +188,8 @@ def gatherdataforprivategpt(result):
                meanout = rr
                message = message  + ' <br> ' + mm + '<br>\
 Answer these questions:<br>\
-<br>Question 1: Which machines are HOSTS AT RISK \
-<br>Question 2: Which HOSTS AT RISK cannot be pinged?  \
-<br>Question 3: What is the avgerage outbound packets for HOSTS AT RISK? \
-<br>Question 4: What is the average inbound packets for HOSTS AT RISK? \
-<br>Question 5: What is the maximum outbound packets for HOSTS AT RISK? \
-<br>Question 6: What is the maximum inbound packets for HOSTS AT RISK? \
-<br>Question 7: Which HOSTS AT RISK have increasing outbound packets in bytes? \
-<br>Question 8: Which HOSTS AT RISK have decreasing outbound packets in bytes? \
-<br>Question 9: Which HOSTS AT RISK have increasing inbound packtets in bytes? \
-<br>Question 10: Which HOSTS AT RISK have decreasing inbound packets in bytes? \
-<br>Question 11: Which machines are down? on switch 1? \
-<br>Question 12: Which machiens are down? on switch 2? \
-<br>Question 13: Which machine has the highest variance in inbound packets? \
-<br>Question 14: Which machine has the highest variance in outbound packets? \
-<br>Question 15: Which machine has an anomaly probability in outbound packets above 80%? \
-<br>Question 16: Which machine has an anomaly probability in inbound packets above 80%? \
+<br>Question 1: Which machines are HOSTS AT RISK? \
+<br>Question 2: Which HOSTS AT RISK cannot be pinged? \
 <br>Keep your response short.'
                messagedetails = "Outbound packets - Host: " + identarr[0]
         if 'inboundpackets' in r['Identifier']:
@@ -217,22 +203,9 @@ Answer these questions:<br>\
                 meanin = rr
                 message = message  + ' <br> ' + mm + '<br>\
 Answer these questions:<br>\
-<br>Question 1: Which machines are HOSTS AT RISK \
-<br>Question 2: Which HOSTS AT RISK cannot be pinged?  \
-<br>Question 3: What is the avgerage outbound packets for HOSTS AT RISK? \
-<br>Question 4: What is the average inbound packets for HOSTS AT RISK? \
-<br>Question 5: What is the maximum outbound packets for HOSTS AT RISK? \
-<br>Question 6: What is the maximum inbound packets for HOSTS AT RISK? \
-<br>Question 7: Which HOSTS AT RISK have increasing outbound packets in bytes? \
-<br>Question 8: Which HOSTS AT RISK have decreasing outbound packets in bytes? \
-<br>Question 9: Which HOSTS AT RISK have increasing inbound packtets in bytes? \
-<br>Question 10: Which HOSTS AT RISK have decreasing inbound packets in bytes? \
-<br>Question 11: Which machines are down? on switch 1? \
-<br>Question 12: Which machiens are down? on switch 2? \
-<br>Question 13: Which machine has the highest variance in inbound packets? \
-<br>Question 14: Which machine has the highest variance in outbound packets? \
-<br>Question 15: Which machine has an anomaly probability in outbound packets above 80%? \
-<br>Question 16: Which machine has an anomaly probability in inbound packets above 80%? \
+<br>Question 1: Which machines are HOSTS AT RISK? \
+<br>Question 2: Which HOSTS AT RISK cannot be pinged? \
+
 <br>Keep your response short.'
                 messagedetails = "Inbound packets - Host: " + identarr[0]
         if message != "" and inside == 1 :
